@@ -336,6 +336,10 @@ public class SpringCodegen extends AbstractJavaCodegen
                         (sourceFolder + File.separator + basePackage).replace(".", java.io.File.separator), "RFC3339DateFormat.java"));
             }
             if (library.equals(SPRING_MVC_LIBRARY)) {
+                supportingFiles.add(new SupportingFile("apiException.mustache",
+                        (sourceFolder + File.separator + configPackage).replace(".", java.io.File.separator), "ApiException.java"));
+                supportingFiles.add(new SupportingFile("apiExceptionHandler.mustache",
+                        (sourceFolder + File.separator + configPackage).replace(".", java.io.File.separator), "ApiExceptionHandler.java"));
                 supportingFiles.add(new SupportingFile("webApplication.mustache",
                         (sourceFolder + File.separator + configPackage).replace(".", java.io.File.separator), "WebApplication.java"));
                 supportingFiles.add(new SupportingFile("webMvcConfiguration.mustache",

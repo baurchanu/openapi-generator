@@ -1,0 +1,32 @@
+package {{apiPackage}};
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@ControllerAdvice
+public class ApiExceptionHandler {
+    @ExceptionHandler(ApiException.class)
+    @ResponseBody ResponseEntity<Error> handleError(ApiException e) {
+        return new ResponseEntity<>(new Error(e.getErrorCode(), e.getMessage()), e.getHttpStatus());
+    }
+
+    public static class Error {
+        private final String code;
+        private final String message;
+
+        public Error(String code, String message) {
+            this.code = code;
+            this.message = message;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+}
